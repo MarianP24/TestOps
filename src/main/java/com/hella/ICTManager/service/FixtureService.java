@@ -63,9 +63,6 @@ public class FixtureService {
 
     public void createMaintenanceFixtureReport() {
         List<Fixture> fixtures = fixtureRepository.findAll(); //iau toate fixture-urile
-        List<String> fixtureNames = fixtures.stream() //iau numele fixture-urilor
-                .map(fixture -> fixture.getFileName())  //iau doar filename-ul din fiecare fixture
-                .toList();
 
         for (Fixture fixture : fixtures) {
             System.out.println("Fixture " + fixture.getFileName() + " has been reported for maintenance by ");

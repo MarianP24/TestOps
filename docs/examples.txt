@@ -1,0 +1,62 @@
+{
+  "fileName": "1430F1.wtg",
+  "programName": "11430A.mtl",
+  "productName": "CMU Plug-in",
+  "business": "CMU old",
+  "machines": []
+}
+{
+  "fileName": "5253F1.wtg",
+  "programName": "12466_5235G.mtl",
+  "productName": "CMU Evo",
+  "business": "CMU old",
+  "machines": []
+}
+{
+  "fileName": "011509_7094DF0001.wtg",
+  "programName": "011509_7094D",
+  "productName": "BMU Plug-in",
+  "business": "BMU old",
+  "machines": []
+}
+{
+  "fileName": "7094F1.wtg",
+  "programName": "11509_7094D.mtl",
+  "productName": "CBMU Plug-in",
+  "business": "BMU old",
+  "machines": []
+}
+{
+  "fileName": "4477F1.wtg",
+  "programName": "11509_7094B.mtl",
+  "productName": "BMU Evo",
+  "business": "BMU old",
+  "machines": []
+}
+
+
+
+
+{
+  "equipmentName": "CMU tower",
+  "internalFactory": 4,
+  "serialNumber": "54230015V",
+  "equipmentType": "Aeroflex",
+  "fixtures": []
+}
+
+{
+  "equipmentName": "ICT2 (scara)",
+  "internalFactory": 4,
+  "serialNumber": "202383",
+  "equipmentType": "SEICA",
+  "fixtures": []
+}
+
+{
+  "equipmentName": "ICT1 (scara)",
+  "internalFactory": 4,
+  "serialNumber": "54250189V",
+  "equipmentType": "Aeroflex",
+  "fixtures": []
+}
