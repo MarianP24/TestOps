@@ -82,8 +82,6 @@ public class FixtureServiceImpl implements FixtureService {
                 throw new RuntimeException(e);
             }
         }
-
-
     }
 
 

@@ -56,8 +56,6 @@ public class FixtureController {
         fixtureService.addFixtureToMachine(fixtureId, machineId);
     }
 
-    //Put este de update
-    //Post este de create
     @PostMapping ("/maintenance")
     public void createMaintenanceFixtureReport() {
         fixtureService.createMaintenanceFixtureReport();
