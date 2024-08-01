@@ -1,4 +1,4 @@
-package com.hella.ICTManager.models.entities;
+package com.hella.ICTManager.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-@Entity   //imi face clasa sa fie o tabela intr-o baza de date
+@Entity
 @Table(name = "fixture")
 public class Fixture {
 

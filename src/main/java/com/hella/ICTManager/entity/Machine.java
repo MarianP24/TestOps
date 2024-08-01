@@ -1,4 +1,4 @@
-package com.hella.ICTManager.models.entities;
+package com.hella.ICTManager.entity;
 
 
 import jakarta.persistence.*;
@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity   //imi face clasa sa fie o tabela intr-o baza de date
+@Entity
 @Table(name = "machine")
 public class Machine {
 

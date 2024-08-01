@@ -1,15 +1,16 @@
 package com.hella.ICTManager.controller;
 
 
-import com.hella.ICTManager.models.entities.Fixture;
+import com.hella.ICTManager.entity.Fixture;
 import com.hella.ICTManager.service.FixtureService;
+import com.hella.ICTManager.service.impl.FixtureServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/fixtures") //maparea request-urilor catre aceasta clasa
+@RequestMapping("/fixtures")
 public class FixtureController {
 
     private final FixtureService fixtureService;
@@ -26,7 +27,6 @@ public class FixtureController {
             "  \"machines\": []\n" +
             "}")
     @PostMapping
-    //prin adnotarea ReqBody ii spunem lui spring sa ia obiectul de tip Fixture din request body
     public void save(@RequestBody Fixture fixture) {
         fixtureService.save(fixture);
     }

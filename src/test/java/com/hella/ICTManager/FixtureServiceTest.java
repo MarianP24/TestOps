@@ -1,10 +1,8 @@
 package com.hella.ICTManager;
 
-import com.hella.ICTManager.models.entities.Fixture;
-import com.hella.ICTManager.models.entities.Machine;
+import com.hella.ICTManager.entity.Fixture;
 import com.hella.ICTManager.repository.FixtureRepository;
-import com.hella.ICTManager.repository.MachineRepository;
-import com.hella.ICTManager.service.FixtureService;
+import com.hella.ICTManager.service.impl.FixtureServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,7 +11,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -24,7 +21,7 @@ class FixtureServiceTest {
     private FixtureRepository fixtureRepository;
 
     @InjectMocks
-    private FixtureService fixtureService;
+    private FixtureServiceImpl fixtureService;
 
     @BeforeEach
     void setUp() {

@@ -1,6 +1,6 @@
 package com.hella.ICTManager.service;
 
-import com.hella.ICTManager.models.entities.Machine;
+import com.hella.ICTManager.entity.Machine;
 import com.hella.ICTManager.repository.MachineRepository;
 import org.springframework.stereotype.Service;
 

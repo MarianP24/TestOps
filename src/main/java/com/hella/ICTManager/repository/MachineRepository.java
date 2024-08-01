@@ -1,6 +1,6 @@
 package com.hella.ICTManager.repository;
 
-import com.hella.ICTManager.models.entities.Machine;
+import com.hella.ICTManager.entity.Machine;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

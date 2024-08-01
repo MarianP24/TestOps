@@ -1,6 +1,6 @@
 package com.hella.ICTManager.controller;
 
-import com.hella.ICTManager.models.entities.Machine;
+import com.hella.ICTManager.entity.Machine;
 import com.hella.ICTManager.service.MachineService;
 import org.springframework.web.bind.annotation.*;
 
