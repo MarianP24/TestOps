@@ -6,6 +6,7 @@ import com.hella.ICTManager.model.FixtureDTO;
 import com.hella.ICTManager.repository.FixtureRepository;
 import com.hella.ICTManager.repository.MachineRepository;
 import com.hella.ICTManager.service.FixtureService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+@Slf4j
 @Component
 public class FixtureServiceImpl implements FixtureService {
     private final FixtureRepository fixtureRepository;
@@ -79,7 +81,7 @@ public class FixtureServiceImpl implements FixtureService {
         List<Fixture> fixtures = fixtureRepository.findAll(); //iau toate fixture-urile
 
         for (Fixture fixture : fixtures) {
-            System.out.println("Fixture " + fixture.getFileName() + " has been reported for maintenance by ");
+            log.info("Fixture {} has been reported for maintenance by ", fixture.getFileName());
             try {
 
                 doBusinessLogic(fixture);
@@ -132,6 +134,4 @@ public class FixtureServiceImpl implements FixtureService {
             }
         }
     }
-
-
 }
