@@ -2,6 +2,7 @@ package com.hella.ICTManager.controller;
 
 
 import com.hella.ICTManager.entity.Fixture;
+import com.hella.ICTManager.model.FixtureDTO;
 import com.hella.ICTManager.service.FixtureService;
 import com.hella.ICTManager.service.impl.FixtureServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,22 +28,22 @@ public class FixtureController {
             "  \"machines\": []\n" +
             "}")
     @PostMapping
-    public void save(@RequestBody Fixture fixture) {
+    public void save(@RequestBody FixtureDTO fixture) {
         fixtureService.save(fixture);
     }
 
     @GetMapping("/{id}")
-    public Fixture findById(@RequestParam long id) {
+    public FixtureDTO findById(@RequestParam long id) {
         return fixtureService.findById(id);
     }
 
     @GetMapping
-    public List<Fixture> getFixtures() {
+    public List<FixtureDTO> getFixtures() {
         return fixtureService.findAll();
     }
 
     @PutMapping("/{id}")
-    public void update(@RequestParam long id, @RequestBody Fixture fixture) {
+    public void update(@RequestParam long id, @RequestBody FixtureDTO fixture) {
         fixtureService.update(id, fixture);
     }
 

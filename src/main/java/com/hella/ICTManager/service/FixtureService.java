@@ -1,19 +1,20 @@
 package com.hella.ICTManager.service;
 
 import com.hella.ICTManager.entity.Fixture;
+import com.hella.ICTManager.model.FixtureDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface FixtureService {
-    void save(Fixture fixture);
+    void save(FixtureDTO fixtureDTO);
 
-    Fixture findById(long id);
+    FixtureDTO findById(long id);
 
-    List<Fixture> findAll();
+    List<FixtureDTO> findAll();
 
-    void update(long id, Fixture fixture);
+    void update(long id, FixtureDTO fixtureDTO);
 
     void deleteById(long id);
 

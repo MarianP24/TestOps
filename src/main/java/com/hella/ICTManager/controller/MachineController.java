@@ -1,7 +1,7 @@
 package com.hella.ICTManager.controller;
 
 import com.hella.ICTManager.entity.Machine;
-import com.hella.ICTManager.service.MachineService;
+import com.hella.ICTManager.service.impl.MachineServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/machines")
 public class MachineController {
-    private final MachineService machineService;
+    private final MachineServiceImpl machineService;
 
-    public MachineController(MachineService machineService) {
+    public MachineController(MachineServiceImpl machineService) {
         this.machineService = machineService;
     }
 

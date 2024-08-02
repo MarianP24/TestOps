@@ -2,6 +2,7 @@ package com.hella.ICTManager.service.impl;
 
 import com.hella.ICTManager.entity.Fixture;
 import com.hella.ICTManager.entity.Machine;
+import com.hella.ICTManager.model.FixtureDTO;
 import com.hella.ICTManager.repository.FixtureRepository;
 import com.hella.ICTManager.repository.MachineRepository;
 import com.hella.ICTManager.service.FixtureService;
@@ -15,6 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 @Component
 public class FixtureServiceImpl implements FixtureService {
@@ -27,32 +29,39 @@ public class FixtureServiceImpl implements FixtureService {
     }
 
     @Override
-    public void save(Fixture fixture) {
+    public void save(FixtureDTO fixtureDTO) {
+        Fixture fixture = convertToEntity(fixtureDTO);
         fixtureRepository.save(fixture);
     }
 
     @Override
-    public Fixture findById(long id) {
-        return fixtureRepository.findById(id)
+    public FixtureDTO findById(long id) {
+        Fixture fixture = fixtureRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Fixture with id " + id + " not found"));
+        return convertToDTO(fixture);
     }
 
     @Override
-    public List<Fixture> findAll() {
-        return fixtureRepository.findAll();
+    public List<FixtureDTO> findAll() {
+        List<Fixture> fixtures = fixtureRepository.findAll();
+        return fixtures.stream()
+                .map(fixture -> convertToDTO(fixture))
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public void update(long id, Fixture fixture) {
-        Fixture oldFixture = fixtureRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Fixture with id " + id + " not found"));
-        oldFixture.setFileName(fixture.getFileName());
-        oldFixture.setBusiness(fixture.getBusiness());
-        oldFixture.setProductName(fixture.getProductName());
-        oldFixture.setProgramName(fixture.getProgramName());
-        oldFixture.setMachines(fixture.getMachines());
-        fixtureRepository.save(fixture);
-    }
+
+
+//    @Override
+//    public void update(long id, FixtureDTO fixtureDTO) {
+//        Fixture oldFixture = fixtureRepository.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("Fixture with id " + id + " not found"));
+//        oldFixture.setFileName(fixtureDTO.getFileName());
+//        oldFixture.setBusiness(fixtureDTO.getBusiness());
+//        oldFixture.setProductName(fixtureDTO.getProductName());
+//        oldFixture.setProgramName(fixtureDTO.getProgramName());
+//        oldFixture.setMachines(fixtureDTO.getMachines());
+//        fixtureRepository.save(oldFixture);
+//    }
 
     @Override
     public void deleteById(long id) {
@@ -127,5 +136,18 @@ public class FixtureServiceImpl implements FixtureService {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    private FixtureDTO convertToDTO(Fixture fixture) {
+        return new FixtureDTO(fixture.getFileName(), fixture.getProgramName(), fixture.getProductName(), fixture.getBusiness());
+    }
+
+    private Fixture convertToEntity(FixtureDTO fixtureDTO) {
+        Fixture fixture = new Fixture();
+        fixture.setFileName(fixtureDTO.fileName());
+        fixture.setBusiness(fixtureDTO.business());
+        fixture.setProductName(fixtureDTO.productName());
+        fixture.setProgramName(fixtureDTO.programName());
+        return fixture;
     }
 }
