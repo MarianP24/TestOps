@@ -48,7 +48,6 @@ public class FixtureServiceImpl implements FixtureService {
                 .toList();
     }
 
-
     @Override
     public void update(long id, FixtureDTO fixtureDTO) {
         Fixture oldFixture = fixtureRepository.findById(id)

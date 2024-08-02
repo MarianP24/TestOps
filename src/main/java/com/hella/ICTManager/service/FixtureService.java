@@ -1,6 +1,5 @@
 package com.hella.ICTManager.service;
 
-import com.hella.ICTManager.entity.Fixture;
 import com.hella.ICTManager.model.FixtureDTO;
 import org.springframework.stereotype.Service;
 

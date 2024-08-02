@@ -1,19 +1,20 @@
 package com.hella.ICTManager.service;
 
 import com.hella.ICTManager.entity.Machine;
+import com.hella.ICTManager.model.MachineDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface MachineService {
-    void save(Machine machine);
+    void save(MachineDTO machineDTO);
 
-    Machine findById(long id);
+    MachineDTO findById(long id);
 
-    List<Machine> findAll();
+    List<MachineDTO> findAll();
 
-    void update(long id, Machine machine);
+    void update(long id, MachineDTO machineDTO);
 
     void deleteById(long id);
 }

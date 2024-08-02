@@ -60,8 +60,3 @@
   "equipmentType": "Aeroflex",
   "fixtures": []
 }
-
-//de spart in metode businesslogic
-//extra endpoint pentru calea de mentenanta
-//teste
-//de pus loguri in loc de printuri

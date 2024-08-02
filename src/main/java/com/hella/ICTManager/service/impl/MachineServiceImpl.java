@@ -1,10 +1,10 @@
 package com.hella.ICTManager.service.impl;
 
 import com.hella.ICTManager.entity.Machine;
+import com.hella.ICTManager.model.MachineDTO;
 import com.hella.ICTManager.repository.MachineRepository;
 import com.hella.ICTManager.service.MachineService;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -16,30 +16,39 @@ public class MachineServiceImpl implements MachineService {
         this.machineRepository = machineRepository;
     }
 
-    public void save(Machine machine) {
-        machineRepository.save(machine);
+    @Override
+    public void save(MachineDTO machineDTO) {
+        machineRepository.save(machineDTO.convertToEntity());
     }
 
-    public Machine findById(long id) {
-        return machineRepository.findById(id)
+    @Override
+    public MachineDTO findById(long id) {
+        Machine machine = machineRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Machine with id " + id + " not found"));
+        return MachineDTO.convertToDTO(machine);
     }
 
-    public List<Machine> findAll() {
-        return machineRepository.findAll();
+    @Override
+    public List<MachineDTO> findAll() {
+        List<Machine> machines = machineRepository.findAll();
+        return machines.stream()
+                .map(MachineDTO::convertToDTO)
+                .toList();
     }
 
-    public void update(long id, Machine machine) {
+    @Override
+    public void update(long id, MachineDTO machineDTO) {
         Machine oldMachine = machineRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Machine with id " + id + " not found"));
-        oldMachine.setEquipmentName(machine.getEquipmentName());
-        oldMachine.setInternalFactory(machine.getInternalFactory());
-        oldMachine.setSerialNumber(machine.getSerialNumber());
-        oldMachine.setEquipmentType(machine.getEquipmentType());
-        oldMachine.setFixtures(machine.getFixtures());
-        machineRepository.save(machine);
+        oldMachine.setEquipmentName(machineDTO.equipmentName());
+        oldMachine.setInternalFactory(machineDTO.internalFactory());
+        oldMachine.setSerialNumber(machineDTO.serialNumber());
+        oldMachine.setEquipmentType(machineDTO.equipmentType());
+        oldMachine.setFixtures(machineDTO.fixtures());
+        machineRepository.save(oldMachine);
     }
 
+    @Override
     public void deleteById(long id) {
         machineRepository.deleteById(id);
     }
