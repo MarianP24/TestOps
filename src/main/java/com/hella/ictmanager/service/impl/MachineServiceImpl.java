@@ -1,13 +1,15 @@
-package com.hella.ICTManager.service.impl;
+package com.hella.ictmanager.service.impl;
 
-import com.hella.ICTManager.entity.Machine;
-import com.hella.ICTManager.model.MachineDTO;
-import com.hella.ICTManager.repository.MachineRepository;
-import com.hella.ICTManager.service.MachineService;
+import com.hella.ictmanager.entity.Machine;
+import com.hella.ictmanager.model.MachineDTO;
+import com.hella.ictmanager.repository.MachineRepository;
+import com.hella.ictmanager.service.MachineService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Slf4j
 @Component
 public class MachineServiceImpl implements MachineService {
     private final MachineRepository machineRepository;
@@ -19,18 +21,21 @@ public class MachineServiceImpl implements MachineService {
     @Override
     public void save(MachineDTO machineDTO) {
         machineRepository.save(machineDTO.convertToEntity());
+        log.info("Machine {} has been saved", machineDTO.equipmentName());
     }
 
     @Override
     public MachineDTO findById(long id) {
         Machine machine = machineRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Machine with id " + id + " not found"));
+        log.info("Machine {} has been found", machine.getEquipmentName());
         return MachineDTO.convertToDTO(machine);
     }
 
     @Override
     public List<MachineDTO> findAll() {
         List<Machine> machines = machineRepository.findAll();
+        log.info("Found {} machines", machines.size());
         return machines.stream()
                 .map(MachineDTO::convertToDTO)
                 .toList();
@@ -46,10 +51,12 @@ public class MachineServiceImpl implements MachineService {
         oldMachine.setEquipmentType(machineDTO.equipmentType());
         oldMachine.setFixtures(machineDTO.fixtures());
         machineRepository.save(oldMachine);
+        log.info("Machine {} has been updated", machineDTO.equipmentName());
     }
 
     @Override
     public void deleteById(long id) {
         machineRepository.deleteById(id);
+        log.info("Machine with id {} has been deleted", id);
     }
 }

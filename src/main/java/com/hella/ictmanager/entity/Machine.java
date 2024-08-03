@@ -1,4 +1,4 @@
-package com.hella.ICTManager.entity;
+package com.hella.ictmanager.entity;
 
 
 import jakarta.persistence.*;
@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -28,5 +29,6 @@ public class Machine {
     private String equipmentType;
 
     @ManyToMany(mappedBy = "machines")
-    private Set<Fixture> fixtures; //o masina are o lista de fixture-uri
+    private Set<Fixture> fixtures = new HashSet<>();
+     //o masina are o lista de fixture-uri
 }

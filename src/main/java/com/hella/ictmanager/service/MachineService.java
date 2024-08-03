@@ -1,7 +1,6 @@
-package com.hella.ICTManager.service;
+package com.hella.ictmanager.service;
 
-import com.hella.ICTManager.entity.Machine;
-import com.hella.ICTManager.model.MachineDTO;
+import com.hella.ictmanager.model.MachineDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

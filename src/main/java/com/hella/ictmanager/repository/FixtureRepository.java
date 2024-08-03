@@ -1,6 +1,6 @@
-package com.hella.ICTManager.repository;
+package com.hella.ictmanager.repository;
 
-import com.hella.ICTManager.entity.Fixture;
+import com.hella.ictmanager.entity.Fixture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.hella.ICTManager.entity;
+package com.hella.ictmanager.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -37,5 +38,5 @@ public class Fixture {
             inverseJoinColumns = @JoinColumn(name = "machine_id")
     )
     @JsonIgnore
-    private Set<Machine> machines; //un fixture are o lista de masini
+    private Set<Machine> machines = new HashSet<>(); //un fixture are o lista de masini
 }

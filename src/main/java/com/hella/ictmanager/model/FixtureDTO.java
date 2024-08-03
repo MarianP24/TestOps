@@ -1,7 +1,7 @@
-package com.hella.ICTManager.model;
+package com.hella.ictmanager.model;
 
-import com.hella.ICTManager.entity.Fixture;
-import com.hella.ICTManager.entity.Machine;
+import com.hella.ictmanager.entity.Fixture;
+import com.hella.ictmanager.entity.Machine;
 
 import java.util.Set;
 

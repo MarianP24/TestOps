@@ -1,8 +1,7 @@
-package com.hella.ICTManager.controller;
+package com.hella.ictmanager.controller;
 
-import com.hella.ICTManager.entity.Machine;
-import com.hella.ICTManager.model.MachineDTO;
-import com.hella.ICTManager.service.impl.MachineServiceImpl;
+import com.hella.ictmanager.model.MachineDTO;
+import com.hella.ictmanager.service.impl.MachineServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

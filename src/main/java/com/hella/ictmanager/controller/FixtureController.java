@@ -1,10 +1,8 @@
-package com.hella.ICTManager.controller;
+package com.hella.ictmanager.controller;
 
 
-import com.hella.ICTManager.entity.Fixture;
-import com.hella.ICTManager.model.FixtureDTO;
-import com.hella.ICTManager.service.FixtureService;
-import com.hella.ICTManager.service.impl.FixtureServiceImpl;
+import com.hella.ictmanager.model.FixtureDTO;
+import com.hella.ictmanager.service.FixtureService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,20 +18,22 @@ public class FixtureController {
         this.fixtureService = fixtureService;
     }
 
-    @Operation(description = "{\n" +
-            "  \"fileName\": \"1430F1.wtg\",\n" +
-            "  \"programName\": \"11430A.mtl\",\n" +
-            "  \"productName\": \"CMU Plug-in\",\n" +
-            "  \"business\": \"CMU old\",\n" +
-            "  \"machines\": []\n" +
-            "}")
+    @Operation(description = """
+            {
+              "fileName": "1430F1.wtg",
+              "programName": "11430A.mtl",
+              "productName": "CMU Plug-in",
+              "business": "CMU old",
+              "machines": []
+            }
+            """)
     @PostMapping
     public void save(@RequestBody FixtureDTO fixture) {
         fixtureService.save(fixture);
     }
 
     @GetMapping("/{id}")
-    public FixtureDTO findById(@RequestParam long id) {
+    public FixtureDTO findById(@PathVariable long id) {
         return fixtureService.findById(id);
     }
 
@@ -43,17 +43,17 @@ public class FixtureController {
     }
 
     @PutMapping("/{id}")
-    public void update(@RequestParam long id, @RequestBody FixtureDTO fixture) {
+    public void update(@PathVariable long id, @RequestBody FixtureDTO fixture) {
         fixtureService.update(id, fixture);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@RequestParam long id) {
+    public void deleteById(@PathVariable long id) {
         fixtureService.deleteById(id);
     }
 
     @PostMapping("/{fixtureId}/machines/{machineId}")
-    public void addFixtureToMachine(long fixtureId, long machineId) {
+    public void addFixtureToMachine(@PathVariable long fixtureId,@PathVariable long machineId) {
         fixtureService.addFixtureToMachine(fixtureId, machineId);
     }
 

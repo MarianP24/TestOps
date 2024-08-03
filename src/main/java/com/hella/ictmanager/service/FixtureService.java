@@ -1,6 +1,6 @@
-package com.hella.ICTManager.service;
+package com.hella.ictmanager.service;
 
-import com.hella.ICTManager.model.FixtureDTO;
+import com.hella.ictmanager.model.FixtureDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
