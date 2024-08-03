@@ -5,7 +5,7 @@ import com.hella.ictmanager.entity.Machine;
 
 import java.util.Set;
 
-public record MachineDTO(String equipmentName, String equipmentType, String serialNumber, int internalFactory, Set<Fixture> fixtures) {
+public record MachineDTO(String equipmentName, String equipmentType, String serialNumber, int internalFactory) {
 
     public Machine convertToEntity() {
         Machine machine = new Machine();
@@ -17,6 +17,6 @@ public record MachineDTO(String equipmentName, String equipmentType, String seri
     }
 
     public static MachineDTO convertToDTO(Machine machine) {
-        return new MachineDTO(machine.getEquipmentName(), machine.getEquipmentType(), machine.getSerialNumber(), machine.getInternalFactory(), machine.getFixtures());
+        return new MachineDTO(machine.getEquipmentName(), machine.getEquipmentType(), machine.getSerialNumber(), machine.getInternalFactory());
     }
 }

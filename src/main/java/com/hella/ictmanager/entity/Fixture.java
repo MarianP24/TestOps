@@ -37,6 +37,5 @@ public class Fixture {
             joinColumns = @JoinColumn(name = "fixture_id"),
             inverseJoinColumns = @JoinColumn(name = "machine_id")
     )
-    @JsonIgnore
-    private Set<Machine> machines = new HashSet<>(); //un fixture are o lista de masini
+    private Set<Machine> machines = new HashSet<>(); //un fixture are o lista de masini, un set gol init
 }

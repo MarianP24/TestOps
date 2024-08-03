@@ -64,7 +64,6 @@ public class FixtureServiceImpl implements FixtureService {
         oldFixture.setBusiness(fixtureDTO.business());
         oldFixture.setProductName(fixtureDTO.productName());
         oldFixture.setProgramName(fixtureDTO.programName());
-        oldFixture.setMachines(fixtureDTO.machines());
         fixtureRepository.save(oldFixture);
         log.info("Fixture {} has been updated", fixtureDTO.fileName());
     }
