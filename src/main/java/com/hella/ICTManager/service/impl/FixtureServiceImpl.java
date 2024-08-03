@@ -2,12 +2,13 @@ package com.hella.ICTManager.service.impl;
 
 import com.hella.ICTManager.entity.Fixture;
 import com.hella.ICTManager.entity.Machine;
+import com.hella.ICTManager.model.FixtureDTO;
 import com.hella.ICTManager.repository.FixtureRepository;
 import com.hella.ICTManager.repository.MachineRepository;
 import com.hella.ICTManager.service.FixtureService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+@Slf4j
 @Component
 public class FixtureServiceImpl implements FixtureService {
     private final FixtureRepository fixtureRepository;
@@ -27,31 +29,35 @@ public class FixtureServiceImpl implements FixtureService {
     }
 
     @Override
-    public void save(Fixture fixture) {
-        fixtureRepository.save(fixture);
+    public void save(FixtureDTO fixtureDTO) {
+        fixtureRepository.save(fixtureDTO.convertToEntity());
     }
 
     @Override
-    public Fixture findById(long id) {
-        return fixtureRepository.findById(id)
+    public FixtureDTO findById(long id) {
+        Fixture fixture = fixtureRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Fixture with id " + id + " not found"));
+        return FixtureDTO.convertToDTO(fixture);
     }
 
     @Override
-    public List<Fixture> findAll() {
-        return fixtureRepository.findAll();
+    public List<FixtureDTO> findAll() {
+        List<Fixture> fixtures = fixtureRepository.findAll();
+        return fixtures.stream()
+                .map(FixtureDTO::convertToDTO)
+                .toList();
     }
 
     @Override
-    public void update(long id, Fixture fixture) {
+    public void update(long id, FixtureDTO fixtureDTO) {
         Fixture oldFixture = fixtureRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Fixture with id " + id + " not found"));
-        oldFixture.setFileName(fixture.getFileName());
-        oldFixture.setBusiness(fixture.getBusiness());
-        oldFixture.setProductName(fixture.getProductName());
-        oldFixture.setProgramName(fixture.getProgramName());
-        oldFixture.setMachines(fixture.getMachines());
-        fixtureRepository.save(fixture);
+        oldFixture.setFileName(fixtureDTO.fileName());
+        oldFixture.setBusiness(fixtureDTO.business());
+        oldFixture.setProductName(fixtureDTO.productName());
+        oldFixture.setProgramName(fixtureDTO.programName());
+        oldFixture.setMachines(fixtureDTO.machines());
+        fixtureRepository.save(oldFixture);
     }
 
     @Override
@@ -74,7 +80,7 @@ public class FixtureServiceImpl implements FixtureService {
         List<Fixture> fixtures = fixtureRepository.findAll(); //iau toate fixture-urile
 
         for (Fixture fixture : fixtures) {
-            System.out.println("Fixture " + fixture.getFileName() + " has been reported for maintenance by ");
+            log.info("Fixture {} has been reported for maintenance by ", fixture.getFileName());
             try {
 
                 doBusinessLogic(fixture);
@@ -87,7 +93,7 @@ public class FixtureServiceImpl implements FixtureService {
 
     private void doBusinessLogic(Fixture fixture) throws FileNotFoundException {
         String filePath = "X:\\Maintenance\\";
-        File file = new File(filePath+fixture.getFileName());
+        File file = new File(filePath + fixture.getFileName());
 
         if (!file.exists()) {
             throw new IllegalArgumentException("File does not exist");
@@ -101,16 +107,15 @@ public class FixtureServiceImpl implements FixtureService {
             if (counter == 50_000) {
                 String newline = "0 0 n";
 
-                try(FileWriter fileWriter = new FileWriter(filePath+fixture.getFileName());
-                    FileWriter fileWriter1 = new FileWriter(filePath + "contoare resetate.txt",true);) {
+                try (FileWriter fileWriter = new FileWriter(filePath + fixture.getFileName());
+                     FileWriter fileWriter1 = new FileWriter(filePath + "contoare resetate.txt", true);) {
                     fileWriter.write(newline);
 
                     fileWriter1.write("Contorul fixture-ului " + fixture.getFileName() + " a fost resetat la 0 in data de: " + java.time.LocalDate.now() + "\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else
-            {
+            } else {
                 fixture.setCounter(Integer.parseInt(words[0]));
                 fixtureRepository.save(fixture);
             }
@@ -119,8 +124,8 @@ public class FixtureServiceImpl implements FixtureService {
 
     @Scheduled(cron = "0 45 13 * * ?")
     public void scheduleBusinessLogic() {
-        List <Fixture> fixtures = fixtureRepository.findAll();
-        for ( Fixture fixture : fixtures) {
+        List<Fixture> fixtures = fixtureRepository.findAll();
+        for (Fixture fixture : fixtures) {
             try {
                 doBusinessLogic(fixture);
             } catch (FileNotFoundException e) {
