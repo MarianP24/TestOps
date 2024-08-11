@@ -30,5 +30,4 @@ public class Machine {
 
     @ManyToMany(mappedBy = "machines")
     private Set<Fixture> fixtures = new HashSet<>();
-     //o masina are o lista de fixture-uri
 }

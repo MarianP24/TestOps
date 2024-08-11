@@ -1,7 +1,6 @@
 package com.hella.ictmanager.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,5 +36,5 @@ public class Fixture {
             joinColumns = @JoinColumn(name = "fixture_id"),
             inverseJoinColumns = @JoinColumn(name = "machine_id")
     )
-    private Set<Machine> machines = new HashSet<>(); //un fixture are o lista de masini, un set gol init
+    private Set<Machine> machines = new HashSet<>();
 }

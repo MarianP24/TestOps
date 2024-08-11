@@ -92,7 +92,7 @@ public class FixtureServiceImpl implements FixtureService {
     }
 
     public void createMaintenanceFixtureReport() {
-        List<Fixture> fixtures = fixtureRepository.findAll(); //iau toate fixture-urile
+        List<Fixture> fixtures = fixtureRepository.findAll();
 
         for (Fixture fixture : fixtures) {
             log.info("Fixture {} has been reported for maintenance", fixture.getFileName());

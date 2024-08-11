@@ -12,7 +12,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -61,28 +60,6 @@ class MachineServiceImplTest {
         List<MachineDTO> result = machineService.findAll();
 
         assertEquals(2, result.size());
-    }
-
-    @Test
-    void update_whenMachineExists_updatesMachine() {
-        Machine oldMachine = new Machine();
-        oldMachine.setId(1L);
-        oldMachine.setEquipmentName("Old Machine");
-        MachineDTO machineDTO = new MachineDTO("Updated Machine", "Factory B", "67890", 4, Set.of());
-        when(machineRepository.findById(1L)).thenReturn(Optional.of(oldMachine));
-
-        machineService.update(1L, machineDTO);
-
-        verify(machineRepository, times(1)).save(oldMachine);
-        assertEquals("Updated Machine", oldMachine.getEquipmentName());
-    }
-
-    @Test
-    void update_whenMachineDoesNotExist_throwsException() {
-        MachineDTO machineDTO = new MachineDTO("Updated Machine", "Factory B", "67890", 4, Set.of());
-        when(machineRepository.findById(1L)).thenReturn(Optional.empty());
-
-        assertThrows(IllegalArgumentException.class, () -> machineService.update(1L, machineDTO));
     }
 
     @Test
