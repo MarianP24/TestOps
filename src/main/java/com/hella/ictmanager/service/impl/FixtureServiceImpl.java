@@ -92,7 +92,7 @@ public class FixtureServiceImpl implements FixtureService {
     }
 
     public void createMaintenanceFixtureReport() {
-        List<Fixture> fixtures = fixtureRepository.findAll(); //iau toate fixture-urile
+        List<Fixture> fixtures = fixtureRepository.findAll();
 
         for (Fixture fixture : fixtures) {
             log.info("Fixture {} has been reported for maintenance", fixture.getFileName());
@@ -103,10 +103,11 @@ public class FixtureServiceImpl implements FixtureService {
 
     private File createFixtureFile(Fixture fixture) {
         File file = new File(serverPath + fixture.getFileName());
-        log.info("File {} has been found in path {}", fixture.getFileName(), file.getAbsolutePath());
+
         if (!file.exists()) {
-            throw new IllegalArgumentException("File does not exist");
+            throw new IllegalArgumentException("File " + fixture.getFileName() + " does not exist");
         }
+        log.info("File {} has been found in path {}", fixture.getFileName(), file.getAbsolutePath());
         log.info("File {} has been created", fixture.getFileName());
         return file;
     }
@@ -139,7 +140,7 @@ public class FixtureServiceImpl implements FixtureService {
     private void resetCounter(String fixtureFileName, String filePath) {
         String countersFileName = "contoare resetate.txt";
         try (FileWriter wtgFileWriter = new FileWriter(filePath);
-             FileWriter countersFileWriter = new FileWriter(serverPath + countersFileName, true);) {
+             FileWriter countersFileWriter = new FileWriter(serverPath + countersFileName, true)) {
 
             String newline = "0 0 n";
             wtgFileWriter.write(newline);
