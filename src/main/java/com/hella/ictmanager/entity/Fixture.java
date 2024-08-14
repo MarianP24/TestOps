@@ -1,7 +1,6 @@
 package com.hella.ictmanager.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,10 +9,10 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
-@NoArgsConstructor
+@NoArgsConstructor // constructor fara parametri folosit de hibernate sa gestioneze instantele entitatilor
 @Setter
 @Getter
-@Entity
+@Entity // clasa este o entitate mapata la o tabela din baza de date
 @Table(name = "fixture")
 public class Fixture {
 
@@ -30,6 +29,8 @@ public class Fixture {
     private String business;
 
     private int counter;
+
+    private long fixtureCounterSet;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(

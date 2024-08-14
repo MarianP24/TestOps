@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -48,12 +49,10 @@ public class FixtureServiceImpl implements FixtureService {
     }
 
     @Override
-    public List<FixtureDTO> findAll() {
+    public List<Fixture> findAll() {
         List<Fixture> fixtures = fixtureRepository.findAll();
         log.info("Found {} fixtures", fixtures.size());
-        return fixtures.stream()
-                .map(FixtureDTO::convertToDTO)
-                .toList();
+        return fixtures;
     }
 
     @Override
@@ -64,6 +63,7 @@ public class FixtureServiceImpl implements FixtureService {
         oldFixture.setBusiness(fixtureDTO.business());
         oldFixture.setProductName(fixtureDTO.productName());
         oldFixture.setProgramName(fixtureDTO.programName());
+        oldFixture.setFixtureCounterSet(fixtureDTO.fixtureCounterSet());
         fixtureRepository.save(oldFixture);
         log.info("Fixture {} has been updated", fixtureDTO.fileName());
     }
@@ -122,7 +122,7 @@ public class FixtureServiceImpl implements FixtureService {
                 String[] words = line.split("\\s+");
                 int counter = Integer.parseInt(words[0]);
 
-                if (counter == 50_000) {
+                if (counter >= fixture.getFixtureCounterSet()) {
                     resetCounter(fixture.getFileName(), file.getAbsolutePath());
                     log.info("Counter has been reset for fixture {}", fixture.getFileName());
                 } else {

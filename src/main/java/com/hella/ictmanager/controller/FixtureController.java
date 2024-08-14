@@ -1,6 +1,7 @@
 package com.hella.ictmanager.controller;
 
 
+import com.hella.ictmanager.entity.Fixture;
 import com.hella.ictmanager.model.FixtureDTO;
 import com.hella.ictmanager.service.FixtureService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,7 +25,7 @@ public class FixtureController {
               "programName": "11430A.mtl",
               "productName": "CMU Plug-in",
               "business": "CMU old",
-              "machines": []
+              "fixtureCounterSet":
             }
             """)
     @PostMapping
@@ -38,7 +39,7 @@ public class FixtureController {
     }
 
     @GetMapping
-    public List<FixtureDTO> getFixtures() {
+    public List<Fixture> getFixtures() {
         return fixtureService.findAll();
     }
 
@@ -53,11 +54,11 @@ public class FixtureController {
     }
 
     @PostMapping("/{fixtureId}/machines/{machineId}")
-    public void addFixtureToMachine(@PathVariable long fixtureId,@PathVariable long machineId) {
+    public void addFixtureToMachine(@PathVariable long fixtureId, @PathVariable long machineId) {
         fixtureService.addFixtureToMachine(fixtureId, machineId);
     }
 
-    @PostMapping ("/maintenance")
+    @PostMapping("/maintenance")
     public void createMaintenanceFixtureReport() {
         fixtureService.createMaintenanceFixtureReport();
     }

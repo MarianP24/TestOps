@@ -1,9 +1,7 @@
 package com.hella.ictmanager.model;
 
-import com.hella.ictmanager.entity.Fixture;
 import com.hella.ictmanager.entity.Machine;
 
-import java.util.Set;
 
 public record MachineDTO(String equipmentName, String equipmentType, String serialNumber, int internalFactory) {
 

@@ -1,5 +1,6 @@
 package com.hella.ictmanager.service;
 
+import com.hella.ictmanager.entity.Machine;
 import com.hella.ictmanager.model.MachineDTO;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ public interface MachineService {
 
     MachineDTO findById(long id);
 
-    List<MachineDTO> findAll();
+    List<Machine> findAll();
 
     void update(long id, MachineDTO machineDTO);
 
