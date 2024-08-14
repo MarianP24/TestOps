@@ -1,6 +1,7 @@
 package com.hella.ictmanager.controller;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hella.ictmanager.entity.Fixture;
 import com.hella.ictmanager.model.FixtureDTO;
 import com.hella.ictmanager.service.FixtureService;
@@ -39,7 +40,7 @@ public class FixtureController {
     }
 
     @GetMapping
-    public List<Fixture> getFixtures() {
+    public List<FixtureDTO> getFixtures() {
         return fixtureService.findAll();
     }
 

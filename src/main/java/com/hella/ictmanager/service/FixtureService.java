@@ -12,7 +12,7 @@ public interface FixtureService {
 
     FixtureDTO findById(long id);
 
-    List<Fixture> findAll();
+    List<FixtureDTO> findAll();
 
     void update(long id, FixtureDTO fixtureDTO);
 

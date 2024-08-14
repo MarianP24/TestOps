@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -49,10 +48,12 @@ public class FixtureServiceImpl implements FixtureService {
     }
 
     @Override
-    public List<Fixture> findAll() {
+    public List<FixtureDTO> findAll() {
         List<Fixture> fixtures = fixtureRepository.findAll();
         log.info("Found {} fixtures", fixtures.size());
-        return fixtures;
+        return fixtures.stream()
+                .map(FixtureDTO::convertToDTO)
+                .toList();
     }
 
     @Override

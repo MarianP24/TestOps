@@ -12,7 +12,7 @@ public interface MachineService {
 
     MachineDTO findById(long id);
 
-    List<Machine> findAll();
+    List<MachineDTO> findAll();
 
     void update(long id, MachineDTO machineDTO);
 

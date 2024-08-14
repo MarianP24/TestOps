@@ -33,10 +33,12 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
-    public List<Machine> findAll() {
+    public List<MachineDTO> findAll() {
         List<Machine> machines = machineRepository.findAll();
         log.info("Found {} machines", machines.size());
-        return machines;
+        return machines.stream()
+                .map(MachineDTO::convertToDTO)
+                .toList();
     }
 
     @Override

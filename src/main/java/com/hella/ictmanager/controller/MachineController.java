@@ -27,7 +27,7 @@ public class MachineController {
     }
 
     @GetMapping
-    public List<Machine> getMachines() {
+    public List<MachineDTO> getMachines() {
         return machineService.findAll();
     }
 
