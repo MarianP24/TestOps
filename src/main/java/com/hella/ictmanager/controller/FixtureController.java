@@ -1,8 +1,6 @@
 package com.hella.ictmanager.controller;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hella.ictmanager.entity.Fixture;
 import com.hella.ictmanager.model.FixtureDTO;
 import com.hella.ictmanager.service.FixtureService;
 import io.swagger.v3.oas.annotations.Operation;

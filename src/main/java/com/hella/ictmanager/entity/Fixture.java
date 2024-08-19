@@ -9,10 +9,10 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
-@NoArgsConstructor // constructor fara parametri folosit de hibernate sa gestioneze instantele entitatilor
+@NoArgsConstructor
 @Setter
 @Getter
-@Entity // clasa este o entitate mapata la o tabela din baza de date
+@Entity
 @Table(name = "fixture")
 public class Fixture {
 

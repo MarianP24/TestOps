@@ -67,6 +67,11 @@
             <artifactId>logstash-logback-encoder</artifactId>
             <version>5.2</version>
         </dependency>
+<!--        thymeleaf-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

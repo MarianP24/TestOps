@@ -1,6 +1,5 @@
 package com.hella.ictmanager.controller;
 
-import com.hella.ictmanager.entity.Machine;
 import com.hella.ictmanager.model.MachineDTO;
 import com.hella.ictmanager.service.impl.MachineServiceImpl;
 import org.springframework.web.bind.annotation.*;
