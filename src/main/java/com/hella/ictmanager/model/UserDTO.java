@@ -1,8 +1,9 @@
 package com.hella.ictmanager.model;
 
 import com.hella.ictmanager.entity.User;
+import com.hella.ictmanager.security.Role;
 
-public record UserDTO(String username, String password, String role) {
+public record UserDTO(String username, String password, Role role) {
 
     public User convertToEntity() {
         User user = new User();
