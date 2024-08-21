@@ -1,0 +1,25 @@
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Endpoints</title>
+</head>
+<body>
+
+<h1>Available Endpoints</h1>
+
+<ul>
+    <li sec:authorize="hasRole('ROLE_ADMIN')">
+        <a th:href="@{/admin-endpoint}">Admin Endpoint</a>
+    </li>
+    <li sec:authorize="hasRole('ROLE_TECHNICIAN')">
+        <a th:href="@{/technician-endpoint}">Operator Endpoint</a>
+    </li>
+    <li sec:authorize="hasRole('ROLE_OPERATOR')">
+        <a th:href="@{/operator-endpoint}">User Endpoint</a>
+    </li>
+</ul>
+
+</body>
+</html>

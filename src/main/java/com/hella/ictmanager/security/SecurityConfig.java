@@ -32,7 +32,12 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TECHNICIAN", "ROLE_OPERATOR")
                         .requestMatchers("/fixtures/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TECHNICIAN", "ROLE_OPERATOR")
                         .requestMatchers("/machines/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_TECHNICIAN", "ROLE_OPERATOR")
-                        .anyRequest().hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/endpoints").hasAnyAuthority("ROLE_ADMIN", "ROLE_TECHNICIAN", "ROLE_OPERATOR")
+                        .requestMatchers("/error", "/access-denied").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedPage("/access-denied")
                 )
                 .httpBasic(Customizer.withDefaults());
 
