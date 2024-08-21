@@ -6,7 +6,6 @@ import com.hella.ictmanager.repository.UserRepository;
 import com.hella.ictmanager.security.Role;
 import com.hella.ictmanager.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -63,13 +62,15 @@ public class UserServiceImpl implements UserService {
 }
 
     @Override
-    @Cacheable("userDetails")
     public UserDetails loadUserByUsername(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User with username " + username + " not found"));
 
         // Adaugă prefixul ROLE_ în autorități
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
+        log.info("User {} has been loaded", user.getUsername());
+        log.info("Role {} has been loaded", user.getRole());
+        log.info("Authorities {} has been loaded", authorities);
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
 }
