@@ -1,5 +1,6 @@
 package com.hella.ictmanager.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Controller
 public class EndpointController implements ErrorController {
 
@@ -22,20 +24,28 @@ public class EndpointController implements ErrorController {
         for (GrantedAuthority authority : authentication.getAuthorities()) {
             String role = authority.getAuthority();
 
-            // Adaugă endpointurile accesibile pe baza rolurilor
+            log.info("User from endpoint controller has role: {}", role);
+
             if ("ROLE_ADMIN".equals(role)) {
-                endpoints.add("/admin-endpoint");
+                endpoints.add("/fixtures");
+                endpoints.add("/machines");
+                endpoints.add("/users");
             }
             if ("ROLE_TECHNICIAN".equals(role)) {
-                endpoints.add("/technician-endpoint");
+                endpoints.add("/fixtures");
+                endpoints.add("/machines");
+                endpoints.add("/users");
             }
             if ("ROLE_OPERATOR".equals(role)) {
-                endpoints.add("/operator-endpoint");
+                endpoints.add("/fixtures");
+                endpoints.add("/machines");
+                endpoints.add("/users");
             }
         }
 
         // Adaugă lista de endpointuri în model pentru a fi accesibilă în template
         model.addAttribute("endpoints", endpoints);
+        log.info("endpoints added to the list: {}", endpoints);
         return "endpointsView"; // Numele template-ului Thymeleaf
     }
 

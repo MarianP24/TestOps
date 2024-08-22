@@ -3,17 +3,12 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Endpoints</title>
+    <title>Access Denied</title>
 </head>
 <body>
 
-<h1>Available Endpoints</h1>
-
-<ul>
-    <li th:each="endpoint : ${endpoints}">
-        <a th:href="@{${endpoint}}">Endpoint</a>
-    </li>
-</ul>
+<h1>Access Denied</h1>
+<p th:text="${error}">You do not have permission to access this page.</p>
 
 </body>
 </html>
