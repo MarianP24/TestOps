@@ -11,7 +11,8 @@
 
 <ul>
     <li th:each="endpoint : ${endpoints}">
-        <a th:href="@{${endpoint}}">Endpoint</a>
+        <a th:href="@{${endpoint.url}}"
+           th:text="${endpoint.className} + ' - ' + ${endpoint.methodName}">Endpoint</a>
     </li>
 </ul>
 
