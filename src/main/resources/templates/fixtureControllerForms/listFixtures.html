@@ -2,9 +2,126 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Fixtures</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+    <h1 class="mt-5">List of Fixtures</h1>
+    <table class="table table-striped mt-4">
+        <thead>
+        <tr>
+            <th><input type="text" id="searchId" placeholder="Search by ID" class="form-control"></th>
+            <th><input type="text" id="searchFileName" placeholder="Search by File Name" class="form-control"></th>
+            <th><input type="text" id="searchProgramName" placeholder="Search by Program Name" class="form-control"></th>
+            <th><input type="text" id="searchProductName" placeholder="Search by Product Name" class="form-control"></th>
+            <th><input type="text" id="searchBusiness" placeholder="Search by Business" class="form-control"></th>
+            <th><input type="text" id="searchFixtureCounterSet" placeholder="Search by Counter Set" class="form-control"></th>
+            <th>
+                <button class="btn btn-sm btn-outline-secondary" onclick="sortTable()">Sort Counters</button>
+            </th>
+        </tr>
 
+        <tr>
+            <th class="text-center align-middle">Database ID</th>
+            <th class="text-center align-middle">File Name</th>
+            <th class="text-center align-middle">Program Name</th>
+            <th class="text-center align-middle">Product Name</th>
+            <th class="text-center align-middle">Business</th>
+            <th class="text-center align-middle">Fixture Counter Set</th>
+            <th class="text-center align-middle">Fixture Counter</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="fixture : ${fixtures}">
+            <td th:text="${fixture.id}"></td>
+            <td th:text="${fixture.fileName}"></td>
+            <td th:text="${fixture.programName}"></td>
+            <td th:text="${fixture.productName}"></td>
+            <td th:text="${fixture.business}"></td>
+            <td th:text="${fixture.fixtureCounterSet}"></td>
+            <td th:text="${fixture.counter}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Butonul pentru a număra fixtures -->
+    <button class="btn btn-primary mt-3" onclick="countFixtures()">Count Fixtures</button>
+
+    <!-- Element pentru afișarea rezultatului -->
+    <p id="fixtureCount" class="mt-3"></p>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Funcția pentru a număra fixtures
+    function countFixtures() {
+        const rows = document.querySelectorAll('tbody tr');
+        const fixtureCount = rows.length;
+        document.getElementById('fixtureCount').innerText = 'Total Fixtures: ' + fixtureCount;
+    }
+
+    // Funcția de filtrare
+    function filterTable() {
+        const inputId = document.getElementById('searchId').value.toLowerCase();
+        const inputFileName = document.getElementById('searchFileName').value.toLowerCase();
+        const inputProgramName = document.getElementById('searchProgramName').value.toLowerCase();
+        const inputProductName = document.getElementById('searchProductName').value.toLowerCase();
+        const inputBusiness = document.getElementById('searchBusiness').value.toLowerCase();
+        const inputCounterSet = document.getElementById('searchFixtureCounterSet').value.toLowerCase();
+
+        const rows = document.querySelectorAll('tbody tr');
+
+        rows.forEach(row => {
+            const id = row.cells[0].innerText.toLowerCase();
+            const fileName = row.cells[1].innerText.toLowerCase();
+            const programName = row.cells[2].innerText.toLowerCase();
+            const productName = row.cells[3].innerText.toLowerCase();
+            const business = row.cells[4].innerText.toLowerCase();
+            const counterSet = row.cells[5].innerText.toLowerCase();
+
+            row.style.display =
+                (id.includes(inputId) &&
+                    fileName.includes(inputFileName) &&
+                    programName.includes(inputProgramName) &&
+                    productName.includes(inputProductName) &&
+                    business.includes(inputBusiness) &&
+                    counterSet.includes(inputCounterSet)) ? '' : 'none';
+        });
+    }
+
+    // Adăugarea evenimentului de 'input' pentru fiecare câmp de căutare
+    document.getElementById('searchId').addEventListener('input', filterTable);
+    document.getElementById('searchFileName').addEventListener('input', filterTable);
+    document.getElementById('searchProgramName').addEventListener('input', filterTable);
+    document.getElementById('searchProductName').addEventListener('input', filterTable);
+    document.getElementById('searchBusiness').addEventListener('input', filterTable);
+    document.getElementById('searchFixtureCounterSet').addEventListener('input', filterTable);
+
+    // Variabilă pentru a ține evidența ordinii de sortare
+    let ascending = true;
+
+    // Funcția de sortare pentru coloana 'Fixture Counter'
+    function sortTable() {
+        const table = document.querySelector('tbody');
+        const rows = Array.from(table.rows);
+
+        rows.sort((a, b) => {
+            const aCounter = parseInt(a.cells[6].innerText);
+            const bCounter = parseInt(b.cells[6].innerText);
+
+            return ascending ? aCounter - bCounter : bCounter - aCounter;
+        });
+
+        // Reatașăm rândurile sortate la tabelă
+        rows.forEach(row => table.appendChild(row));
+
+        // Inversăm ordinea de sortare pentru următoarea apăsare
+        ascending = !ascending;
+    }
+</script>
 </body>
 </html>

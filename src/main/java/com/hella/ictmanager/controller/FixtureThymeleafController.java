@@ -1,19 +1,25 @@
 package com.hella.ictmanager.controller;
 
+import com.hella.ictmanager.entity.Fixture;
 import com.hella.ictmanager.model.FixtureDTO;
+import com.hella.ictmanager.repository.FixtureRepository;
 import com.hella.ictmanager.service.FixtureService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/fixturesThymeleaf")
 public class FixtureThymeleafController {
 
     private final FixtureService fixtureService;
+    private final FixtureRepository fixtureRepository;
 
-    public FixtureThymeleafController(FixtureService fixtureService) {
+    public FixtureThymeleafController(FixtureService fixtureService, FixtureRepository fixtureRepository) {
         this.fixtureService = fixtureService;
+        this.fixtureRepository = fixtureRepository;
     }
 
     private static final String SAVE_FIXTURE = "insert fixture in Database";
@@ -34,13 +40,13 @@ public class FixtureThymeleafController {
         model.addAttribute("deleteFixturebyID", DELETE_FIXTURE);
         model.addAttribute("addFixtureToMachine", ADD_FIXTURE_TO_MACHINE);
         model.addAttribute("createMaintenanceReport", CREATE_MAINTENANCE_REPORT);
-        return "fixtureControllerForms/listEndpointsController"; // Afișează pagina cu lista de stringuri
+        return "fixtureControllerForms/listEndpointsController";
     }
 
     @GetMapping("/save fixture")
     public String saveFixtureForm(Model model) {
-        model.addAttribute("fixtureDTO", new FixtureDTO("", "", "", "", 0)); // Inițializează un obiect gol de FixtureDTO
-        return "fixtureControllerForms/saveFixtures"; // Afișează formularul de creare a unui fixture
+        model.addAttribute("fixtureDTO", new FixtureDTO("", "", "", "", 0));
+        return "fixtureControllerForms/saveFixtures";
     }
 
     @PostMapping("/save fixture")
@@ -52,14 +58,25 @@ public class FixtureThymeleafController {
 
 
     @GetMapping("/get fixture by ID")
-    public String findFixtureByIdForm() {
-        // Logica pentru crearea fixture-ului
+    public String findFixtureByIdForm(Model model, @RequestParam(value = "id", required = false) Long id) {
+        if (id != null) {
+            try {
+                FixtureDTO fixture = fixtureService.findById(id);
+                model.addAttribute("fixture", fixture); // Adăugăm fixture-ul găsit în model
+                model.addAttribute("message", "Fixture found");
+            } catch (IllegalArgumentException e) {
+                model.addAttribute("errorMessage", e.getMessage());
+            }
+        } else {
+            model.addAttribute("fixture", null); // Fără date inițiale dacă nu există ID-ul
+        }
         return "fixtureControllerForms/getFixtureById"; // Afișează formularul de căutare a unui fixture
     }
 
     @GetMapping("/list fixtures")
     public String listFixturesForm(Model model) {
-        model.addAttribute("action", GET_FIXTURES);
+        List<Fixture> fixtures = fixtureRepository.findAll();
+        model.addAttribute("fixtures", fixtures);
         return "fixtureControllerForms/listFixtures"; // Afișează formularul cu fixture-urile existente
     }
 
