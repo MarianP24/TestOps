@@ -1,5 +1,7 @@
 package com.hella.ictmanager.controller;
 
+import com.hella.ictmanager.model.FixtureDTO;
+import com.hella.ictmanager.service.FixtureService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -8,26 +10,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/fixturesThymeleaf")
 public class FixtureThymeleafController {
 
-    // Endpoints
-    private static final String SAVE_FIXTURE = "Insert fixture";
-    private static final String GET_FIXTURE_BY_ID = "Find fixture by ID";
+    private final FixtureService fixtureService;
+
+    public FixtureThymeleafController(FixtureService fixtureService) {
+        this.fixtureService = fixtureService;
+    }
+
+    private static final String SAVE_FIXTURE = "insert fixture in Database";
+    private static final String GET_FIXTURE_BY_ID = "find fixture by ID";
     private static final String GET_FIXTURES = "List fixtures";
-    private static final String UPDATE_FIXTURE = "Update fixture by ID ";
-    private static final String DELETE_FIXTURE = "Delete fixture by ID";
+    private static final String UPDATE_FIXTURE = "update fixture by ID ";
+    private static final String DELETE_FIXTURE = "delete fixture by ID";
     private static final String ADD_FIXTURE_TO_MACHINE = "Add fixture to machine";
     private static final String CREATE_MAINTENANCE_REPORT = "Create maintenance report";
 
-    @GetMapping
-    public String listEndpoints(Model model) {
-        model.addAttribute("saveFixture", SAVE_FIXTURE);
-        model.addAttribute("FindFixtureById", GET_FIXTURE_BY_ID);
-        model.addAttribute("listFixtures", GET_FIXTURES);
-        model.addAttribute("updateFixturebyID", UPDATE_FIXTURE);
-        model.addAttribute("deleteFixturebyID", DELETE_FIXTURE);
-        model.addAttribute("addFixtureToMachine", ADD_FIXTURE_TO_MACHINE);
-        model.addAttribute("createMaintenanceReport", CREATE_MAINTENANCE_REPORT);
-        return "index"; // Șablonul Thymeleaf pentru listarea fixture-urilor
-    }
 
     @GetMapping("/listEndpointsController")
     public String showFixtureControllerPage(Model model) {
@@ -41,11 +37,19 @@ public class FixtureThymeleafController {
         return "fixtureControllerForms/listEndpointsController"; // Afișează pagina cu lista de stringuri
     }
 
-    @PostMapping("/save fixture")
+    @GetMapping("/save fixture")
     public String saveFixtureForm(Model model) {
-        model.addAttribute("action", SAVE_FIXTURE);
+        model.addAttribute("fixtureDTO", new FixtureDTO("", "", "", "", 0)); // Inițializează un obiect gol de FixtureDTO
         return "fixtureControllerForms/saveFixtures"; // Afișează formularul de creare a unui fixture
     }
+
+    @PostMapping("/save fixture")
+    public String saveFixture(@ModelAttribute FixtureDTO fixtureDTO, Model model) {
+        fixtureService.save(fixtureDTO);
+        model.addAttribute("message", "Fixture saved successfully");
+        return "fixtureControllerForms/saveFixtures";
+    }
+
 
     @GetMapping("/get fixture by ID")
     public String findFixtureByIdForm() {
