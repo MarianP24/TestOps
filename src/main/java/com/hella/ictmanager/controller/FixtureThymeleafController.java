@@ -80,10 +80,10 @@ public class FixtureThymeleafController {
         return "fixtureControllerForms/listFixtures"; // Afișează formularul cu fixture-urile existente
     }
 
-    @PutMapping("/update fixture by ID")
-    public String updateFixtureForm() {
-        // Logica pentru actualizarea fixture-ului
-        return "fixtureControllerForms/updateFixture"; // Afișează formularul de actualizare a unui fixture
+    @GetMapping("/update fixture by ID")
+    public String updateFixtureForm(Model model) {
+        model.addAttribute("fixtureDTO", new FixtureDTO("", "", "", "", 0));
+        return "fixtureControllerForms/updateFixture"; // Afișează formularul de actualizare a unui fixture după ID
     }
 
     @DeleteMapping("/delete fixture by ID")

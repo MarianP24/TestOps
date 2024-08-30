@@ -1,0 +1,14 @@
+.dropdown-menu.bg-dark .dropdown-item {
+    color: white;
+    transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+
+.dropdown-menu.bg-dark .dropdown-item:hover {
+    font-size: 1.1em; /* Increase text size on hover */
+    background-color: #343a40; /* Maintain dark background */
+    color: white;   /* Keep text white */
+}
+
+.navbar-nav .nav-link {
+    color: white;
+}
