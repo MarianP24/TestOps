@@ -7,7 +7,6 @@
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<!-- Update Fixture Form -->
 <div class="container mt-5">
     <h2>Update Fixture</h2>
 
@@ -33,31 +32,31 @@
             <!-- File Name Field -->
             <div class="form-group mb-3">
                 <label for="fileName">File Name:</label>
-                <input type="text" class="form-control" id="fileName" th:field="*{fileName}" placeholder="Enter file name">
+                <input type="text" class="form-control" id="fileName" th:field="*{fileName}">
             </div>
 
             <!-- Program Name Field -->
             <div class="form-group mb-3">
                 <label for="programName">Program Name:</label>
-                <input type="text" class="form-control" id="programName" th:field="*{programName}" placeholder="Enter program name">
+                <input type="text" class="form-control" id="programName" th:field="*{programName}">
             </div>
 
             <!-- Product Name Field -->
             <div class="form-group mb-3">
                 <label for="productName">Product Name:</label>
-                <input type="text" class="form-control" id="productName" th:field="*{productName}" placeholder="Enter product name">
+                <input type="text" class="form-control" id="productName" th:field="*{productName}">
             </div>
 
             <!-- Business Field -->
             <div class="form-group mb-3">
                 <label for="business">Business:</label>
-                <input type="text" class="form-control" id="business" th:field="*{business}" placeholder="Enter business">
+                <input type="text" class="form-control" id="business" th:field="*{business}">
             </div>
 
             <!-- Fixture Counter Set Field -->
             <div class="form-group mb-3">
                 <label for="fixtureCounterSet">Fixture Counter Set:</label>
-                <input type="number" class="form-control" id="fixtureCounterSet" th:field="*{fixtureCounterSet}" placeholder="Enter fixture counter set">
+                <input type="number" class="form-control" id="fixtureCounterSet" th:field="*{fixtureCounterSet}">
             </div>
 
             <!-- Hidden Field for ID -->
