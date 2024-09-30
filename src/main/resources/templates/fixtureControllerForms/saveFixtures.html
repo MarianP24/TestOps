@@ -12,23 +12,28 @@
     <form action="/fixturesThymeleaf/saveFixture" method="post">
         <div class="mb-3">
             <label for="fileName" class="form-label">File Name</label>
-            <input type="text" id="fileName" name="fileName" class="form-control" th:value="${fixtureDTO.fileName}" required>
+            <input type="text" id="fileName" name="fileName" class="form-control" th:value="${fixtureDTO.fileName}"
+                   required>
         </div>
         <div class="mb-3">
             <label for="programName" class="form-label">Program Name</label>
-            <input type="text" id="programName" name="programName" class="form-control" th:value="${fixtureDTO.programName}" required>
+            <input type="text" id="programName" name="programName" class="form-control"
+                   th:value="${fixtureDTO.programName}" required>
         </div>
         <div class="mb-3">
             <label for="productName" class="form-label">Product Name</label>
-            <input type="text" id="productName" name="productName" class="form-control" th:value="${fixtureDTO.productName}" required>
+            <input type="text" id="productName" name="productName" class="form-control"
+                   th:value="${fixtureDTO.productName}" required>
         </div>
         <div class="mb-3">
             <label for="business" class="form-label">Business</label>
-            <input type="text" id="business" name="business" class="form-control" th:value="${fixtureDTO.business}" required>
+            <input type="text" id="business" name="business" class="form-control" th:value="${fixtureDTO.business}"
+                   required>
         </div>
         <div class="mb-3">
             <label for="fixtureCounterSet" class="form-label">Fixture Counter Set</label>
-            <input type="number" id="fixtureCounterSet" name="fixtureCounterSet" class="form-control" th:value="${fixtureDTO.fixtureCounterSet}" required>
+            <input type="number" id="fixtureCounterSet" name="fixtureCounterSet" class="form-control"
+                   th:value="${fixtureDTO.fixtureCounterSet}" required>
         </div>
         <button type="submit" class="btn btn-primary">Save Fixture</button>
     </form>

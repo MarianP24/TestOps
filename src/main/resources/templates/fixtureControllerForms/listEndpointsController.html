@@ -8,30 +8,32 @@
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
-  <h1 class="mt-5">Fixture Controller Endpoints</h1>
-  <ul class="list-group mt-3">
-    <li class="list-group-item">
-      <a th:href="@{/fixturesThymeleaf/saveFixture}" th:text="'Save fixture (' + ${saveFixture} + ')'"></a>
-    </li>
-    <li class="list-group-item">
-      <a th:href="@{/fixturesThymeleaf/getFixtureByID}" th:text="'Find fixture (' + ${findFixtureById} + ')'"></a>
-    </li>
-    <li class="list-group-item">
-      <a th:href="@{/fixturesThymeleaf/listFixtures}" th:text="${listFixtures}"></a>
-    </li>
-    <li class="list-group-item">
-      <a th:href="@{/fixturesThymeleaf/updateFixtureByID}" th:text="'Update fixture (' + ${updateFixtureByID} + ')'"></a>
-    </li>
-    <li class="list-group-item">
-      <a th:href="@{/fixturesThymeleaf/deleteFixtureByID}" th:text="'Delete fixture (' + ${deleteFixtureByID} + ')'"></a>
-    </li>
-    <li class="list-group-item">
-      <a th:href="@{/fixturesThymeleaf/addFixtureToMachine}" th:text="${addFixtureToMachine}"></a>
-    </li>
-    <li class="list-group-item">
-      <a th:href="@{/fixturesThymeleaf/createMaintenanceReport}" th:text="${createMaintenanceReport}"></a>
-    </li>
-  </ul>
+    <h1 class="mt-5">Fixture Controller Endpoints</h1>
+    <ul class="list-group mt-3">
+        <li class="list-group-item">
+            <a th:href="@{/fixturesThymeleaf/saveFixture}" th:text="'Save fixture (' + ${saveFixture} + ')'"></a>
+        </li>
+        <li class="list-group-item">
+            <a th:href="@{/fixturesThymeleaf/getFixtureByID}" th:text="'Get Fixture by ID'"></a>
+        </li>
+        <li class="list-group-item">
+            <a th:href="@{/fixturesThymeleaf/listFixtures}" th:text="${listFixtures}"></a>
+        </li>
+        <li class="list-group-item">
+            <a th:href="@{/fixturesThymeleaf/updateFixtureByID}"
+               th:text="'Update fixture (' + ${updateFixtureByID} + ')'"></a>
+        </li>
+        <li class="list-group-item">
+            <a th:href="@{/fixturesThymeleaf/deleteFixtureByID}"
+               th:text="'Delete fixture (' + ${deleteFixtureByID} + ')'"></a>
+        </li>
+        <li class="list-group-item">
+            <a th:href="@{/fixturesThymeleaf/addFixtureToMachine}" th:text="${addFixtureToMachine}"></a>
+        </li>
+        <li class="list-group-item">
+            <a th:href="@{/fixturesThymeleaf/createMaintenanceReport}" th:text="${createMaintenanceReport}"></a>
+        </li>
+    </ul>
 </div>
 
 <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>

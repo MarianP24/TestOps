@@ -9,7 +9,7 @@
 
 <div class="container">
     <h1 class="mt-5">Find Fixture by ID</h1>
-    <form action="/fixturesThymeleaf/get fixture by ID" method="get" class="mt-4">
+    <form action="/fixturesThymeleaf/getFixtureByID" method="get" class="mt-4">
         <div class="mb-3">
             <label for="id" class="form-label">Fixture ID</label>
             <input type="number" id="id" name="id" class="form-control" placeholder="Enter Fixture ID" required>
@@ -22,10 +22,13 @@
             <h2>Fixture Details</h2>
             <ul class="list-group">
                 <li class="list-group-item"><strong>File Name:</strong> <span th:text="${fixture.fileName}"></span></li>
-                <li class="list-group-item"><strong>Program Name:</strong> <span th:text="${fixture.programName}"></span></li>
-                <li class="list-group-item"><strong>Product Name:</strong> <span th:text="${fixture.productName}"></span></li>
+                <li class="list-group-item"><strong>Program Name:</strong> <span
+                        th:text="${fixture.programName}"></span></li>
+                <li class="list-group-item"><strong>Product Name:</strong> <span
+                        th:text="${fixture.productName}"></span></li>
                 <li class="list-group-item"><strong>Business:</strong> <span th:text="${fixture.business}"></span></li>
-                <li class="list-group-item"><strong>Fixture Counter Set:</strong> <span th:text="${fixture.fixtureCounterSet}"></span></li>
+                <li class="list-group-item"><strong>Fixture Counter Set:</strong> <span
+                        th:text="${fixture.fixtureCounterSet}"></span></li>
             </ul>
         </div>
         <div th:if="${errorMessage != null}" class="alert alert-danger" th:text="${errorMessage}"></div>

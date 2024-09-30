@@ -23,7 +23,7 @@ public class FixtureThymeleafController {
     }
 
     private static final String SAVE_FIXTURE = "insert fixture in Database";
-    private static final String GET_FIXTURE_BY_ID = "find fixture by ID";
+  //  private static final String GET_FIXTURE_BY_ID = "find fixture by ID";
     private static final String GET_FIXTURES = "List fixtures";
     private static final String UPDATE_FIXTURE = "update fixture by ID ";
     private static final String DELETE_FIXTURE = "delete fixture by ID";
@@ -34,7 +34,7 @@ public class FixtureThymeleafController {
     @GetMapping("/listEndpointsController")
     public String showFixtureControllerPage(Model model) {
         model.addAttribute("saveFixture", SAVE_FIXTURE);
-        model.addAttribute("findFixtureById", GET_FIXTURE_BY_ID);
+      //  model.addAttribute("findFixtureById", GET_FIXTURE_BY_ID);
         model.addAttribute("listFixtures", GET_FIXTURES);
         model.addAttribute("updateFixtureByID", UPDATE_FIXTURE);
         model.addAttribute("deleteFixtureByID", DELETE_FIXTURE);
