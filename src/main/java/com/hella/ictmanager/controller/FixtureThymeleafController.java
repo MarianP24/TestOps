@@ -36,20 +36,20 @@ public class FixtureThymeleafController {
         model.addAttribute("saveFixture", SAVE_FIXTURE);
         model.addAttribute("findFixtureById", GET_FIXTURE_BY_ID);
         model.addAttribute("listFixtures", GET_FIXTURES);
-        model.addAttribute("updateFixturebyID", UPDATE_FIXTURE);
-        model.addAttribute("deleteFixturebyID", DELETE_FIXTURE);
+        model.addAttribute("updateFixtureByID", UPDATE_FIXTURE);
+        model.addAttribute("deleteFixtureByID", DELETE_FIXTURE);
         model.addAttribute("addFixtureToMachine", ADD_FIXTURE_TO_MACHINE);
         model.addAttribute("createMaintenanceReport", CREATE_MAINTENANCE_REPORT);
         return "fixtureControllerForms/listEndpointsController";
     }
 
-    @GetMapping("/save fixture")
+    @GetMapping("/saveFixture")
     public String saveFixtureForm(Model model) {
         model.addAttribute("fixtureDTO", new FixtureDTO("", "", "", "", 0));
         return "fixtureControllerForms/saveFixtures";
     }
 
-    @PostMapping("/save fixture")
+    @PostMapping("/saveFixture")
     public String saveFixture(@ModelAttribute FixtureDTO fixtureDTO, Model model) {
         fixtureService.save(fixtureDTO);
         model.addAttribute("message", "Fixture saved successfully");
@@ -57,7 +57,7 @@ public class FixtureThymeleafController {
     }
 
 
-    @GetMapping("/get fixture by ID")
+    @GetMapping("/getFixtureByID")
     public String findFixtureByIdForm(Model model, @RequestParam(value = "id", required = false) Long id) {
         if (id != null) {
             try {
@@ -73,32 +73,50 @@ public class FixtureThymeleafController {
         return "fixtureControllerForms/getFixtureById"; // Afișează formularul de căutare a unui fixture
     }
 
-    @GetMapping("/list fixtures")
+    @GetMapping("/listFixtures")
     public String listFixturesForm(Model model) {
         List<Fixture> fixtures = fixtureRepository.findAll();
         model.addAttribute("fixtures", fixtures);
         return "fixtureControllerForms/listFixtures"; // Afișează formularul cu fixture-urile existente
     }
 
-    @GetMapping("/update fixture by ID")
+    @GetMapping("/updateFixtureByID")
     public String updateFixtureForm(Model model) {
-        model.addAttribute("fixtureDTO", new FixtureDTO("", "", "", "", 0));
-        return "fixtureControllerForms/updateFixture"; // Afișează formularul de actualizare a unui fixture după ID
+        model.addAttribute("fixture", new Fixture()); // Provide an empty Fixture object for the form
+        return "fixtureControllerForms/updateFixture"; // Redirect to the update fixture form
     }
 
-    @DeleteMapping("/delete fixture by ID")
-    public String deleteFixtureForm() {
-        // Logica pentru ștergerea fixture-ului
-        return "fixtureControllerForms/deleteFixtureByID"; // Afișează formularul de ștergere a unui fixture dupa ID
+    @PostMapping("/updateFixtureByID")
+    public String updateFixture(@RequestParam("id") Long id, Model model) {
+        try {
+            Fixture fixture = fixtureService.findEntityById(id); // Get the fixture by ID
+            model.addAttribute("fixture", fixture);
+            return "fixtureControllerForms/updateFixture"; // Display the form populated with the fixture data
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "fixtureControllerForms/updateFixture"; // Show error message in the same form
+        }
     }
 
-    @PostMapping("/add fixture to machine")
+
+    @DeleteMapping("/deleteFixtureById")
+    public String deleteFixtureForm(@RequestParam("id") Long id, Model model) {
+        try {
+            fixtureService.deleteById(id);
+            model.addAttribute("message", "Fixture deleted successfully");
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+        }
+        return "fixtureControllerForms/deleteFixtureById";
+    }
+
+    @PostMapping("/addFixtureToMachine")
     public String addFixtureToMachineForm() {
         // Logica pentru adăugarea fixture-ului la o mașină
         return "fixtureControllerForms/addFixtureToMachine"; // Afișează formularul de adăugare a unui fixture la o mașină
     }
 
-    @PostMapping("/create maintenance report")
+    @PostMapping("/createMaintenanceReport")
     public String createMaintenanceReportForm() {
         // Logica pentru crearea raportului de mentenanță
         return "fixtureControllerForms/createMaintenanceReport"; // Afișează formularul de creare a unui raport de mentenanță

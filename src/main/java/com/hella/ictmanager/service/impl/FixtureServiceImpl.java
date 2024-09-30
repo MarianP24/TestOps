@@ -57,6 +57,13 @@ public class FixtureServiceImpl implements FixtureService {
     }
 
     @Override
+    public Fixture findEntityById(long id) {
+        return fixtureRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Fixture with id " + id + " not found"));
+    }
+
+
+    @Override
     public void update(long id, FixtureDTO fixtureDTO) {
         Fixture oldFixture = fixtureRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Fixture with id " + id + " not found"));

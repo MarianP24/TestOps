@@ -14,7 +14,7 @@
 
 <div class="container">
     <h1 class="mt-5">Save Fixture</h1>
-    <form action="/fixturesThymeleaf/save fixture" method="post">
+    <form action="/fixturesThymeleaf/saveFixture" method="post">
         <div class="mb-3">
             <label for="fileName" class="form-label">File Name</label>
             <input type="text" id="fileName" name="fileName" class="form-control" th:value="${fixtureDTO.fileName}" required>

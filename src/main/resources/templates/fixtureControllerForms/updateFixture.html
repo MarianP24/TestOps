@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Fixture</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Save Fixture</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="/css/styles.css" rel="stylesheet">
+
 </head>
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
+<!-- Update Fixture Form -->
 <div class="container mt-5">
     <h2>Update Fixture</h2>
 
@@ -18,44 +21,58 @@
     <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
     <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
 
-    <!-- Form to update fixture -->
-    <form th:action="@{/fixturesThymeleaf/updateFixture}" th:object="${fixtureDTO}" method="post">
-        <!-- File Name Field -->
+    <!-- Form to find and update fixture -->
+    <form th:action="@{/fixturesThymeleaf/updateFixtureByID}" method="post">
+        <!-- ID Field -->
         <div class="form-group mb-3">
-            <label for="fileName">File Name:</label>
-            <input type="text" class="form-control" id="fileName" th:field="*{fileName}" placeholder="Enter file name">
+            <label for="id">Fixture ID:</label>
+            <input type="number" class="form-control" id="id" name="id" placeholder="Enter fixture ID" required>
         </div>
-
-        <!-- Program Name Field -->
-        <div class="form-group mb-3">
-            <label for="programName">Program Name:</label>
-            <input type="text" class="form-control" id="programName" th:field="*{programName}" placeholder="Enter program name">
-        </div>
-
-        <!-- Product Name Field -->
-        <div class="form-group mb-3">
-            <label for="productName">Product Name:</label>
-            <input type="text" class="form-control" id="productName" th:field="*{productName}" placeholder="Enter product name">
-        </div>
-
-        <!-- Business Field -->
-        <div class="form-group mb-3">
-            <label for="business">Business:</label>
-            <input type="text" class="form-control" id="business" th:field="*{business}" placeholder="Enter business">
-        </div>
-
-        <!-- Fixture Counter Set Field -->
-        <div class="form-group mb-3">
-            <label for="fixtureCounterSet">Fixture Counter Set:</label>
-            <input type="number" class="form-control" id="fixtureCounterSet" th:field="*{fixtureCounterSet}" placeholder="Enter fixture counter set">
-        </div>
-
-        <!-- Hidden Field for ID -->
-        <input type="hidden" th:field="*{id}" />
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Update Fixture</button>
+        <button type="submit" class="btn btn-primary">Load Fixture</button>
     </form>
+
+    <!-- Display the fixture update form only if fixture is present -->
+    <div th:if="${fixture}">
+        <form th:action="@{/fixturesThymeleaf/updateFixtureByID}" th:object="${fixture}" method="post">
+            <!-- File Name Field -->
+            <div class="form-group mb-3">
+                <label for="fileName">File Name:</label>
+                <input type="text" class="form-control" id="fileName" th:field="*{fileName}" placeholder="Enter file name">
+            </div>
+
+            <!-- Program Name Field -->
+            <div class="form-group mb-3">
+                <label for="programName">Program Name:</label>
+                <input type="text" class="form-control" id="programName" th:field="*{programName}" placeholder="Enter program name">
+            </div>
+
+            <!-- Product Name Field -->
+            <div class="form-group mb-3">
+                <label for="productName">Product Name:</label>
+                <input type="text" class="form-control" id="productName" th:field="*{productName}" placeholder="Enter product name">
+            </div>
+
+            <!-- Business Field -->
+            <div class="form-group mb-3">
+                <label for="business">Business:</label>
+                <input type="text" class="form-control" id="business" th:field="*{business}" placeholder="Enter business">
+            </div>
+
+            <!-- Fixture Counter Set Field -->
+            <div class="form-group mb-3">
+                <label for="fixtureCounterSet">Fixture Counter Set:</label>
+                <input type="number" class="form-control" id="fixtureCounterSet" th:field="*{fixtureCounterSet}" placeholder="Enter fixture counter set">
+            </div>
+
+            <!-- Hidden Field for ID -->
+            <input type="hidden" th:field="*{id}" />
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Update Fixture</button>
+        </form>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
