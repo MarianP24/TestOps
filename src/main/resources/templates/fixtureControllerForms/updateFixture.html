@@ -28,7 +28,8 @@
 
     <!-- Display the fixture update form only if fixture is present -->
     <div th:if="${fixture}">
-        <form th:action="@{/fixturesThymeleaf/updateFixtureByID}" th:object="${fixture}" method="post">
+        <form th:action="@{/fixturesThymeleaf/updateFixture}" th:object="${fixture}" method="post">
+
             <!-- File Name Field -->
             <div class="form-group mb-3">
                 <label for="fileName">File Name:</label>

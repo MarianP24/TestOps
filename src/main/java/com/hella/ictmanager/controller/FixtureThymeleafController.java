@@ -4,12 +4,14 @@ import com.hella.ictmanager.entity.Fixture;
 import com.hella.ictmanager.model.FixtureDTO;
 import com.hella.ictmanager.repository.FixtureRepository;
 import com.hella.ictmanager.service.FixtureService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/fixturesThymeleaf")
 public class FixtureThymeleafController {
@@ -75,7 +77,7 @@ public class FixtureThymeleafController {
     }
 
     @PostMapping("/updateFixtureByID")
-    public String updateFixture(@RequestParam("id") Long id, Model model) {
+    public String loadUpdateFixtureForm(@RequestParam("id") Long id, Model model) {
         try {
             Fixture fixture = fixtureService.findEntityById(id); // Get the fixture by ID
             model.addAttribute("fixture", fixture);
@@ -84,6 +86,17 @@ public class FixtureThymeleafController {
             model.addAttribute("errorMessage", e.getMessage());
             return "fixtureControllerForms/updateFixture"; // Show error message in the same form
         }
+    }
+
+    @PostMapping("/updateFixture")
+    public String updateFixture(@ModelAttribute Fixture fixture, Model model) {
+        try {
+            fixtureService.update(fixture.getId(), FixtureDTO.convertToDTO(fixture));
+            model.addAttribute("message", "Fixture updated successfully");
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+        }
+        return "fixtureControllerForms/updateFixture";
     }
 
 
