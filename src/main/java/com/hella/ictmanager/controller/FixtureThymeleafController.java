@@ -99,16 +99,21 @@ public class FixtureThymeleafController {
         return "fixtureControllerForms/updateFixture";
     }
 
+    @GetMapping("/deleteFixtureByID")
+    public String deleteFixtureForm(Model model) {
+        model.addAttribute("fixture", new Fixture()); // Provide an empty Fixture object for the form
+        return "fixtureControllerForms/deleteFixtureByID"; // Redirect to the delete fixture form
+    }
 
-    @DeleteMapping("/deleteFixtureById")
-    public String deleteFixtureForm(@RequestParam("id") Long id, Model model) {
+    @PostMapping("/deleteFixtureByID")
+    public String deleteFixture(@RequestParam("id") Long id, Model model) {
         try {
             fixtureService.deleteById(id);
             model.addAttribute("message", "Fixture deleted successfully");
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
         }
-        return "fixtureControllerForms/deleteFixtureById";
+        return "fixtureControllerForms/deleteFixtureByID";
     }
 
     @PostMapping("/addFixtureToMachine")
