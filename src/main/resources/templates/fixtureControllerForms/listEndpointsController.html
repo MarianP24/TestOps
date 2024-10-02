@@ -13,25 +13,25 @@
 
     <ul class="list-group mt-3">
         <li class="list-group-item">
-            <a th:href="@{/fixturesThymeleaf/saveFixture}" th:text="'Save Fixture ('+ ${saveFixture} +')'"></a>
+            <a th:href="@{/fixtures/adaptor/new}" th:text="'Save Fixture ('+ ${saveFixture} +')'"></a>
         </li>
         <li class="list-group-item">
-            <a th:href="@{/fixturesThymeleaf/getFixtureByID}" th:text="'Get Fixture by ID'"></a>
+            <a th:href="@{/fixtures/getFixture}" th:text="'Get Fixture'"></a>
         </li>
         <li class="list-group-item">
-            <a th:href="@{/fixturesThymeleaf/listFixtures}" th:text="'List Fixtures'"></a>
+            <a th:href="@{/fixtures/listFixtures}" th:text="'List Fixtures'"></a>
         </li>
         <li class="list-group-item">
-            <a th:href="@{/fixturesThymeleaf/updateFixtureByID}" th:text="'Update fixture by ID'"></a>
+            <a th:href="@{/fixtures/updateFixture}" th:text="'Update fixture'"></a>
         </li>
         <li class="list-group-item">
-            <a th:href="@{/fixturesThymeleaf/deleteFixtureByID}" th:text="'Delete fixture by ID'"></a>
+            <a th:href="@{/fixtures/deleteFixture}" th:text="'Delete fixture'"></a>
         </li>
         <li class="list-group-item">
-            <a th:href="@{/fixturesThymeleaf/addFixtureToMachine}" th:text="'Add Fixture to machine'"></a>
+            <a th:href="@{/fixtures/addFixtureToMachine}" th:text="'Add Fixture to machine'"></a>
         </li>
         <li class="list-group-item">
-            <a th:href="@{/fixturesThymeleaf/createMaintenanceReport}" th:text="'Create maintenance report'"></a>
+            <a th:href="@{/fixtures/createMaintenanceReport}" th:text="'Create maintenance report'"></a>
         </li>
     </ul>
 </div>

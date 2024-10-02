@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<th:block th:replace="~{fragments/head :: head(title='Save Fixture')}"></th:block>
+
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <h1 class="mt-5">Save Fixture</h1>
+    <form action="/fixtures/adaptor/save" method="post" th:object="${fixtureDTO}">
+        <div class="mb-3">
+            <label for="fileName">File Name</label>
+            <input type="text" id="fileName" th:field="*{fileName}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="programName">Program Name</label>
+            <input type="text" id="programName" th:field="*{programName}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" th:field="*{productName}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="business">Business</label>
+            <input type="text" id="business" th:field="*{business}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="fixtureCounterSet">Fixture Counter Set</label>
+            <input type="number" id="fixtureCounterSet" th:field="*{fixtureCounterSet}" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Fixture</button>
+    </form>
+
+    <!-- Success Message -->
+    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+    <!-- Error Message -->
+    <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
+</div>
+
+<th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
+</body>
+</html>

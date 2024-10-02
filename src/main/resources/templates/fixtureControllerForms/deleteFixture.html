@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <th:block th:replace="~{fragments/head :: head(title='Delete Fixture By ID')}"></th:block>
+    <th:block th:replace="~{fragments/head :: head(title='Delete Fixture')}"></th:block>
 
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
-    <h1>Delete Fixture By ID</h1>
-    <form th:action="@{/fixturesThymeleaf/deleteFixtureByID}" method="post">
+    <h1 class="mt-5">Delete Fixture</h1>
+    <form th:action="@{/templates/fixtureControllerForms/deleteFixtureByID}" method="post">
         <div class="form-group">
             <label for="fixtureId">Fixture ID:</label>
             <input type="number" id="fixtureId" name="id" class="form-control" required>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<th:block th:replace="~{fragments/head :: head(title='Update Fixture By ID')}"></th:block>
+<th:block th:replace="~{fragments/head :: head(title='Update Fixture')}"></th:block>
 
 <body>
 
@@ -15,7 +15,7 @@
     <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
 
     <!-- Form to find and update fixture -->
-    <form th:action="@{/fixturesThymeleaf/updateFixtureByID}" method="post">
+    <form th:action="@{/templates/fixtureControllerForms/updateFixtureByID}" method="post">
         <!-- ID Field -->
         <div class="form-group mb-3">
             <label for="id">Fixture ID:</label>
@@ -28,7 +28,7 @@
 
     <!-- Display the fixture update form only if fixture is present -->
     <div th:if="${fixture}">
-        <form th:action="@{/fixturesThymeleaf/updateFixture}" th:object="${fixture}" method="post">
+        <form th:action="@{/templates/fixtureControllerForms/updateFixture}" th:object="${fixture}" method="post">
 
             <!-- File Name Field -->
             <div class="form-group mb-3">
