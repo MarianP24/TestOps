@@ -12,27 +12,13 @@
     <h1 class="mt-5">Fixture Controller Endpoints</h1>
 
     <ul class="list-group mt-3">
-        <li class="list-group-item">
-            <a th:href="@{/fixtures/adaptor/new}" th:text="'Save Fixture ('+ ${saveFixture} +')'"></a>
-        </li>
-        <li class="list-group-item">
-            <a th:href="@{/fixtures/getFixture}" th:text="'Get Fixture'"></a>
-        </li>
-        <li class="list-group-item">
-            <a th:href="@{/fixtures/listFixtures}" th:text="'List Fixtures'"></a>
-        </li>
-        <li class="list-group-item">
-            <a th:href="@{/fixtures/updateFixture}" th:text="'Update fixture'"></a>
-        </li>
-        <li class="list-group-item">
-            <a th:href="@{/fixtures/deleteFixture}" th:text="'Delete fixture'"></a>
-        </li>
-        <li class="list-group-item">
-            <a th:href="@{/fixtures/addFixtureToMachine}" th:text="'Add Fixture to machine'"></a>
-        </li>
-        <li class="list-group-item">
-            <a th:href="@{/fixtures/createMaintenanceReport}" th:text="'Create maintenance report'"></a>
-        </li>
+        <li class="list-group-item"><a th:href="@{/fixtures/adaptor/new}" th:text="'Save Fixture ('+ ${saveFixture} +')'"></a></li>
+        <li class="list-group-item"><a th:href="@{/fixtures/findFixture}" th:text="'Find Fixture'"></a></li>
+        <li class="list-group-item"><a th:href="@{/fixtures/listFixtures}" th:text="'List Fixtures'"></a></li>
+        <li class="list-group-item"><a th:href="@{/fixtures/updateFixture}" th:text="'Update Fixture'"></a></li>
+        <li class="list-group-item"><a th:href="@{/fixtures/deleteFixture}" th:text="'Delete Fixture'"></a></li>
+        <li class="list-group-item"><a th:href="@{/fixtures/addFixtureToMachine}" th:text="'Add Fixture to machine'"></a></li>
+        <li class="list-group-item"><a th:href="@{/fixtures/createMaintenanceReport}" th:text="'Create maintenance report'"></a></li>
     </ul>
 </div>
 

@@ -10,51 +10,43 @@
 <div class="container mt-5">
     <h2>Update Fixture</h2>
 
-    <!-- Display success or error messages -->
-    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
-    <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
-
     <!-- Form to find and update fixture -->
-    <form th:action="@{/templates/fixtureControllerForms/updateFixtureByID}" method="post">
-        <!-- ID Field -->
+    <form action="/fixtures/updateFixture/IDForm" method="post">
         <div class="form-group mb-3">
             <label for="id">Fixture ID:</label>
             <input type="number" class="form-control" id="id" name="id" placeholder="Enter fixture ID" required>
         </div>
 
-        <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Load Fixture</button>
+
+        <div th:if="${errorMessage}" class="alert alert-danger mt-2" th:text="${errorMessage}"></div>
+
     </form>
 
     <!-- Display the fixture update form only if fixture is present -->
     <div th:if="${fixture}">
-        <form th:action="@{/templates/fixtureControllerForms/updateFixture}" th:object="${fixture}" method="post">
+        <form action="/fixtures/updateFixture" th:object="${fixture}" method="post">
 
-            <!-- File Name Field -->
             <div class="form-group mb-3">
                 <label for="fileName">File Name:</label>
                 <input type="text" class="form-control" id="fileName" th:field="*{fileName}">
             </div>
 
-            <!-- Program Name Field -->
             <div class="form-group mb-3">
                 <label for="programName">Program Name:</label>
                 <input type="text" class="form-control" id="programName" th:field="*{programName}">
             </div>
 
-            <!-- Product Name Field -->
             <div class="form-group mb-3">
                 <label for="productName">Product Name:</label>
                 <input type="text" class="form-control" id="productName" th:field="*{productName}">
             </div>
 
-            <!-- Business Field -->
             <div class="form-group mb-3">
                 <label for="business">Business:</label>
                 <input type="text" class="form-control" id="business" th:field="*{business}">
             </div>
 
-            <!-- Fixture Counter Set Field -->
             <div class="form-group mb-3">
                 <label for="fixtureCounterSet">Fixture Counter Set:</label>
                 <input type="number" class="form-control" id="fixtureCounterSet" th:field="*{fixtureCounterSet}">
@@ -63,8 +55,10 @@
             <!-- Hidden Field for ID -->
             <input type="hidden" th:field="*{id}" />
 
-            <!-- Submit Button -->
             <button type="submit" class="btn btn-primary">Update Fixture</button>
+
+            <div th:if="${message}" class="alert alert-success mt-2" th:text="${message}"></div>
+            <div th:if="${errorMessage}" class="alert alert-danger mt-2" th:text="${errorMessage}"></div>
         </form>
     </div>
 </div>

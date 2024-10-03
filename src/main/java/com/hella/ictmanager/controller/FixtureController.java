@@ -47,8 +47,8 @@ public class FixtureController {
     }
 
 
-    @GetMapping("/getFixture")
-    public String findFixtureByIdForm(Model model, @RequestParam(value = "id", required = false) Long id) {
+    @GetMapping("/findFixture")
+    public String findFixture(Model model, @RequestParam(value = "id", required = false) Long id) {
         if (id != null) {
             try {
                 FixtureDTO fixture = fixtureService.findById(id);
@@ -60,11 +60,11 @@ public class FixtureController {
         } else {
             model.addAttribute("fixture", null); // Fără date inițiale dacă nu există ID-ul
         }
-        return "fixtureControllerForms/getFixture"; // Afișează formularul de căutare a unui fixture
+        return "fixtureControllerForms/findFixture"; // Afișează formularul de căutare a unui fixture
     }
 
     @GetMapping("/listFixtures")
-    public String listFixturesForm(Model model) {
+    public String listFixtures(Model model) {
         List<Fixture> fixtures = fixtureRepository.findAll();
         model.addAttribute("fixtures", fixtures);
         return "fixtureControllerForms/listFixtures"; // Afișează formularul cu fixture-urile existente
@@ -76,7 +76,7 @@ public class FixtureController {
         return "fixtureControllerForms/updateFixture"; // Redirect to the update fixture form
     }
 
-    @PostMapping("/updateFixtureByID")
+    @PostMapping("/updateFixture/IDForm")
     public String loadUpdateFixtureForm(@RequestParam("id") Long id, Model model) {
         try {
             Fixture fixture = fixtureService.findEntityById(id); // Get the fixture by ID

@@ -18,7 +18,7 @@
             <th><input type="text" id="searchProgramName" placeholder="Search by Program Name" class="form-control"></th>
             <th><input type="text" id="searchProductName" placeholder="Search by Product Name" class="form-control"></th>
             <th><input type="text" id="searchBusiness" placeholder="Search by Business" class="form-control"></th>
-            <th><input type="text" id="searchFixtureCounterSet" placeholder="Search by Counter Set"class="form-control"></th>
+            <th><input type="text" id="searchFixtureCounterSet" placeholder="Search by Counter Set" class="form-control"></th>
             <th><button class="btn btn-sm btn-outline-secondary" onclick="sortTable()">Sort Counters</button></th>
         </tr>
 
@@ -47,7 +47,6 @@
         </tbody>
     </table>
 
-    <!-- Butonul pentru a număra fixtures -->
     <button class="btn btn-primary mt-3" onclick="countFixtures()">Count Fixtures</button>
     <button class="btn btn-secondary mt-3" onclick="generateCSV()">Generate CSV</button>
 
@@ -59,14 +58,12 @@
 <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
 
 <script>
-    // Funcția pentru a număra fixtures
     function countFixtures() {
         const rows = document.querySelectorAll('tbody tr');
         const fixtureCount = rows.length;
         document.getElementById('fixtureCount').innerText = 'Total Fixtures: ' + fixtureCount;
     }
 
-    // Funcția de filtrare
     function filterTable() {
         const inputId = document.getElementById('searchId').value.toLowerCase();
         const inputFileName = document.getElementById('searchFileName').value.toLowerCase();
