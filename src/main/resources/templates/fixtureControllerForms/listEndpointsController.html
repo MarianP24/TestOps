@@ -3,35 +3,20 @@
 
 <th:block th:replace="~{fragments/head :: head(title='Fixture Controller Endpoints')}"></th:block>
 <link href="/css/hexagon.css" rel="stylesheet">
+
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<div class="container">
-
-    <h1 class="mt-5">Fixture Controller Endpoints</h1>
-
-    <ul class="list-group mt-3">
-        <li class="list-group-item"><a th:href="@{/fixtures/adaptor/new}" th:text="'Save Fixture ('+ ${saveFixture} +')'"></a></li>
-        <li class="list-group-item"><a th:href="@{/fixtures/findFixture}" th:text="'Find Fixture'"></a></li>
-        <li class="list-group-item"><a th:href="@{/fixtures/listFixtures}" th:text="'List Fixtures'"></a></li>
-        <li class="list-group-item"><a th:href="@{/fixtures/updateFixture}" th:text="'Update Fixture'"></a></li>
-        <li class="list-group-item"><a th:href="@{/fixtures/deleteFixture}" th:text="'Delete Fixture'"></a></li>
-        <li class="list-group-item"><a th:href="@{/fixtures/addFixtureToMachine}" th:text="'Add Fixture to machine'"></a></li>
-        <li class="list-group-item"><a th:href="@{/fixtures/createMaintenanceReport}" th:text="'Create maintenance report'"></a></li>
-    </ul>
+<div class="hexagon-container">
+    <a href="/fixtures/adaptor/new" class="hexagon hex1"><span>Save Fixture</span></a>
+    <a href="/fixtures/deleteFixture" class="hexagon hex2"><span>Delete Fixture</span></a>
+    <a href="/fixtures/listFixtures" class="hexagon hex3"><span>List Fixtures</span></a>
+    <a href="/fixtures/updateFixture" class="hexagon hex4"><span>Update Fixture</span></a>
+    <a href="/fixtures/findFixture" class="hexagon hex5"><span>Find Fixture</span></a>
+    <a href="/fixtures/addFixtureToMachine" class="hexagon hex6"><span>Add Fixture to Machine</span></a>
+    <a href="/fixtures/createMaintenanceReport" class="hexagon hex7"><span>Create Mt Report</span></a>
 </div>
-
-
-<!--<div style="position:absolute; top:300px" >-->
-<!--    <div class="hexagon hex1"></div>-->
-<!--    <div class="hexagon hex2"></div>-->
-<!--    <div class="hexagon hex3"></div>-->
-<!--    <div class="hexagon hex4"></div>-->
-<!--    <div class="hexagon hex5"></div>-->
-<!--    <div class="hexagon hex6"></div>-->
-<!--    <div class="hexagon hex7"></div>-->
-<!--</div>-->
 
 <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
 

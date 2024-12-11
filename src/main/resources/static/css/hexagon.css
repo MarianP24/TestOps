@@ -1,57 +1,85 @@
-.hexagon {
-    width: 100px;
-    height: 55px;
-    background: red;
-    position: absolute;
+.hexagon-container {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 500px;
 }
 
-.hexagon:before {
-    content: "";
+.hexagon {
+    width: 150px;
+    height: 130px;
     position: absolute;
-    top: -25px;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 25px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    text-decoration: none;
+    font-weight: bold;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+            0 5px 15px rgba(0, 0, 0, 0.5),
+            0 0 5px rgba(0, 0, 0, 0.5),
+            inset 0 0 15px rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease;
 }
-.hexagon:after {
-    content: "";
-    position: absolute;
-    bottom: -25px;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-top: 25px solid red;
+
+.hexagon:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow:
+            0 8px 20px rgba(0, 0, 0, 0.6),
+            0 0 10px rgba(0, 0, 0, 0.6),
+            inset 0 0 20px rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    z-index: 10;
 }
+
 .hex1 {
-    top: 200px;
-    left: 110px;
+    top: 320px;
+    left: 160px;
+    background-image: url('../images/saveFixture.PNG');
 }
+
 .hex2 {
-    top: 20px;
-    left: 110px;
+    top: 60px;
+    left: 160px;
+    background-image: url('../images/findFixture.PNG');
 }
+
 .hex3 {
-    top: 20px;
-    left: 220px;
+    top: 60px;
+    left: 320px;
+    background-image: url('../images/listFixtures.PNG');
 }
+
 .hex4 {
-    top: 110px;
-    left: 55px;
+    top: 190px;
+    left: 82px;
+    background-image: url('../images/updateFixture.PNG');
 }
+
 .hex5 {
-    top: 110px;
-    left: 165px;
+    top: 190px;
+    left: 240px;
+    background-image: url('../images/deleteFixture.PNG');
 }
+
 .hex6 {
-    top: 110px;
-    left: 275px;
+    top: 190px;
+    left: 400px;
+    background-image: url('../images/addFixturetoMachine.PNG');
 }
+
 .hex7 {
-    top: 200px;
-    left: 220px;
+    top: 320px;
+    left: 320px;
+    background-image: url('../images/createMtReport.PNG');
 }
